@@ -1,11 +1,11 @@
-package com.example.proxy;
+package com.example.proxy.api;
 
 import org.springframework.cloud.servicebroker.model.instance.*;
 import org.springframework.cloud.servicebroker.service.ServiceInstanceService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProxyController implements ServiceInstanceService {
+public class ProxyService implements ServiceInstanceService {
 
 
     @Override
