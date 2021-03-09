@@ -1,5 +1,9 @@
 package com.example.proxy.api;
 
+import java.io.IOException;
+
+import com.example.proxy.service.OperatorService;
+
 import org.springframework.cloud.servicebroker.model.instance.*;
 import org.springframework.cloud.servicebroker.service.ServiceInstanceService;
 import org.springframework.stereotype.Service;
@@ -10,6 +14,12 @@ public class ProxyService implements ServiceInstanceService {
 
     @Override
     public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest createServiceInstanceRequest) {
+        try {
+            new OperatorService().createService();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         return CreateServiceInstanceResponse.builder().build();
     }
 
