@@ -11,8 +11,8 @@ public class ServicePlans {
     public Catalog catalog() {
         Plan sampleFreePlan = Plan.builder()
                 .id("fd81196c-a414-43e5-bd81-1dbb082a3c55")
-                .name("sample-free-plan")
-                .description("Sample Service Free Plan")
+                .name("postgres-free-plan")
+                .description("Postgres Free Plan")
                 .free(true)
                 .metadata("serviceInstanceName", "sample-service-instance-1")
                 .schemas(Schemas
@@ -31,18 +31,19 @@ public class ServicePlans {
 
         ServiceDefinition serviceDefinition = ServiceDefinition.builder()
                 .id("b92c0ca7-c162-4029-b567-0d92978c0a97")
-                .name("sample-service")
-                .description("Sample Service")
+                .name("postgres-service")
+                .description("Postgres Service")
                 .bindable(true)
                 .tags("sample", "service")
                 .plans(sampleFreePlan)
-                .metadata("displayName", "sample-broker")
-                .metadata("longDescription", "A OSB broker interacting with operator service")
-                .metadata("providerDisplayName", "Sample Broker")
+                .metadata("displayName", "postgres-broker")
+                .metadata("longDescription", "A OSB broker interacting with postgres service")
+                .metadata("providerDisplayName", "Postgres Broker")
                 .build();
 
         return Catalog.builder()
                 .serviceDefinitions(serviceDefinition)
                 .build();
     }
+
 }

@@ -1,3 +1,4 @@
 server:
+  max-http-header-size: 10MB
   servlet:
     context-path: /sample-broker
