@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>sample-proxy</artifactId>
+	<artifactId>proxy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>proxy</name>
 	<description>Proxy for service catalog</description>

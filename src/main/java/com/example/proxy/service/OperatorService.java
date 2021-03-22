@@ -45,7 +45,7 @@ public class OperatorService {
 
     }
 
-    public void deleteService(CustomResource customResource) throws IOException {
+    public void deleteServiceInstance(CustomResource customResource) throws IOException {
         ApiClient client = Config.defaultClient();
         Configuration.setDefaultApiClient(client);
         CustomObjectsApi api = new CustomObjectsApi(client);
@@ -92,6 +92,19 @@ public class OperatorService {
         }
 
 
+    }
+
+    public void deleteServiceBinding(String name) throws IOException, ApiException{
+        ApiClient client = Config.defaultClient();
+        Configuration.setDefaultApiClient(client);
+        CustomObjectsApi api = new CustomObjectsApi(client);
+        client.setDebugging(true);
+
+        api.deleteNamespacedCustomObject(
+            "binding.operators.coreos.com", 
+            "v1alpha1", 
+            "default", 
+            "servicebindings", name, new V1DeleteOptions(), null, null, null);
     }
 
 }

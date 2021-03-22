@@ -11,6 +11,8 @@ import org.springframework.cloud.servicebroker.model.binding.*;
 import org.springframework.cloud.servicebroker.service.ServiceInstanceBindingService;
 import org.springframework.stereotype.Service;
 
+import io.kubernetes.client.ApiException;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +71,7 @@ public class ProxyBindingInstanceApi implements ServiceInstanceBindingService {
 
         try {
             operatorService.bindService(body);
+            customResourceCache.addToProvisionedAsboBindings(UUID.fromString(request.getBindingId()), serviceBindingName);
         } catch (IOException e) {
             log.error("IOException", e);
         }
@@ -86,7 +89,14 @@ public class ProxyBindingInstanceApi implements ServiceInstanceBindingService {
     }
 
     @Override
-    public DeleteServiceInstanceBindingResponse deleteServiceInstanceBinding(DeleteServiceInstanceBindingRequest deleteServiceInstanceBindingRequest) {
+    public DeleteServiceInstanceBindingResponse deleteServiceInstanceBinding(DeleteServiceInstanceBindingRequest request) {
+        log.info(request.toString());
+        String name = customResourceCache.getProvisionedAsboBinding(UUID.fromString(request.getBindingId()));
+        try{
+        operatorService.deleteServiceBinding(name);
+        } catch(IOException | ApiException e){
+            log.error(e.getMessage());
+        }
         return DeleteServiceInstanceBindingResponse.builder().build();
     }
 }

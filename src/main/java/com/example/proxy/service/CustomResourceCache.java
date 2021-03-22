@@ -11,6 +11,7 @@ import java.util.UUID;
 public class CustomResourceCache {
     private Map<String, CustomResource> cache = new HashMap<>();
     private Map<UUID, CustomResource> provisionedResources = new HashMap<>();
+    private Map<UUID, String> provisionedAsboBindings = new HashMap<>();
 
     public Map<String, CustomResource> getCache(){
         return cache;
@@ -38,6 +39,14 @@ public class CustomResourceCache {
 
     public CustomResource getProvisionedResource(UUID serviceInstanceId){
         return provisionedResources.get(serviceInstanceId);
+    }
+
+    public void addToProvisionedAsboBindings(UUID bindingId, String name){
+        provisionedAsboBindings.put(bindingId, name);
+    }
+
+    public String getProvisionedAsboBinding(UUID bindingId){
+        return provisionedAsboBindings.get(bindingId);
     }
 
     /*public CustomResource mapping(){

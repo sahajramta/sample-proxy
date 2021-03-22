@@ -66,7 +66,7 @@ public class ProxyServiceInstanceApi implements ServiceInstanceService {
         CustomResource customResource = customResourceCache.getProvisionedResource(UUID.fromString(request.getServiceInstanceId()));
         try {
             if(customResource != null){
-                operatorService.deleteService(customResource);
+                operatorService.deleteServiceInstance(customResource);
             }
         } catch (IOException e) {
             log.error("Exception while deleting Service Instance", e);
