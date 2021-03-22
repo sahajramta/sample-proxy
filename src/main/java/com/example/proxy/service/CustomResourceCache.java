@@ -49,28 +49,4 @@ public class CustomResourceCache {
         return provisionedAsboBindings.get(bindingId);
     }
 
-    /*public CustomResource mapping(){
-        CustomResource crSampleOperator = new CustomResource();
-        crSampleOperator.setApiVersion("sample-operator.example.com/v1");
-        crSampleOperator.setKind("SampleOperator");
-        crSampleOperator.setPlural("sampleoperators");
-        return crSampleOperator;
-    }*/
-
-    public static void main (String args[]){
-        CustomResource crSampleOperator = new CustomResource();
-        crSampleOperator.setApiVersion("sample-operator.example.com/v1");
-        crSampleOperator.setKind("SampleOperator");
-        crSampleOperator.setPlural("sampleoperators");
-        HashMap<String, Object> metadata = new HashMap<>();
-        metadata.put("name", "sampleoperator-sample");
-        metadata.put("namespace", "default");
-
-        HashMap<String, Object> spec  = new HashMap<>();
-        spec.put("serviceInstanceName", "sample-instance1");
-        crSampleOperator.setMetadata(metadata);
-        crSampleOperator.setSpec(spec);
-        CustomResourceCache customResourceCache = new CustomResourceCache();
-        customResourceCache.addToProvisionedResources(UUID.randomUUID(), crSampleOperator);
-    }
 }

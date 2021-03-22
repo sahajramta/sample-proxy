@@ -41,7 +41,7 @@ public class ProxyBindingInstanceApi implements ServiceInstanceBindingService {
 
         String serviceBindingName = request.getContext().getProperties().get("instance_name") + "-service-binding";
         HashMap<String, Object> metadata = new HashMap<>();
-        metadata.put("name", request.getContext().getProperties().get("instance_name"));
+        metadata.put("name", serviceBindingName);
         metadata.put("namespace", "default");
         body.put("metadata", metadata);
 
